@@ -1,0 +1,49 @@
+<p>home works!</p>
+
+@if(isLoggedIn){
+<p>Bienvenido {{username}}</p>
+} @else{
+<p>Loggearse</p>
+}
+
+<div class="col-sm-4">
+    <!-- Lista de selección (select) para "origins" -->
+    <label for="origin" class="col-sm-8 col-form-label">Select an origin:</label>
+    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
+        @for (item of origins; track $index)
+        {
+        <option [value]="item">
+            {{ item }}
+        </option>
+        }
+    </select>
+</div>
+<div class="col-md-4">
+    <!-- Lista de selección (select) para "destinations" -->
+    <label for="destination" class="col-sm-8 col-form-label">Select a destination:</label>
+    <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
+        @for (item of destinations; track $index)
+        {
+        <option [value]="item">
+            {{ item }}
+        </option>
+        }
+    </select>
+</div>
+
+<div class="col-md-4">
+    <!-- Lista de selección (select) para "coins" -->
+    <label for="coin" class="col-sm-8 col-form-label">Select a coin:</label>
+        <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
+            @for (item of coins; track $index)
+            {
+            <option [value]="item">
+                {{ item }}
+            </option>
+            }
+    </select>
+</div>
+
+<div>
+    <p>Selected Value: {{ selectedValue }}</p>
+</div>

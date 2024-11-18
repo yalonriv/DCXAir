@@ -43,10 +43,28 @@ namespace DCXAir_API.Controllers
                 return BadRequest("Hubo un error al procesar el archivo JSON.");
             }
         }
-    
 
-        
-      
+        [HttpPost("filterByOneWay")]
+        public IActionResult GetFlightsByOrigin([FromBody] FlightFilterDTO filter)
+        {
+            if (filter == null || string.IsNullOrEmpty(filter.Origin) || string.IsNullOrEmpty(filter.Destination))
+            {
+                return BadRequest("Debe proporcionar un origen válido.");
+            }
+
+            // Search One Way Flight
+            var filteredOneWayFlights = Flights.Where(f =>
+            f.Origin.ToLower().Contains(filter.Origin.ToLower()) &&
+            f.Destination.ToLower().Contains(filter.Destination.ToLower())).ToList();
+
+            if (filteredOneWayFlights.Count == 0)
+            {
+                return NotFound("There is no flights with the search criterial.");
+            }
+            return Ok(filteredOneWayFlights);
+        }
+
+
     } 
 
 

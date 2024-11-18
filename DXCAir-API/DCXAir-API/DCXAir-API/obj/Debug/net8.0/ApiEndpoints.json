@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "DCXAir_API.Controllers.FlightsController",
+    "Method": "GetFlightsByOrigin",
+    "RelativePath": "flights/filterByOneWay",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "filter",
+        "Type": "DCXAir_API.Models.FlightFilterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DCXAir_API.Controllers.FlightsController",
     "Method": "GetFlights",
     "RelativePath": "flights/getAllFlights",
     "HttpMethod": "GET",
