@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Runtime.CompilerServices;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using DCXAir_API.Models;
 using Newtonsoft.Json;
@@ -11,15 +10,24 @@ namespace DCXAir_API.Controllers
     public class FlightsController : ControllerBase
     {
 
-        // Lista simulada de vuelos (esto sería reemplazado por la lectura de un archivo o base de datos)
+        // List that keeps the flights
         private readonly List<Flight> Flights;
 
-        // Constructor para cargar los vuelos desde un archivo o base de datos
+        // Constructor for save the flights in the list Flights according with the 
+        //information of the son markets
         public FlightsController()
         {
-            // Simulamos que cargamos los vuelos desde un archivo o una base de datos
+            // Extracts the information from the json markets
             string miJson = System.IO.File.ReadAllText("markets.json");
             Flights = JsonConvert.DeserializeObject<List<Flight>>(miJson);
+        }
+
+        private List<Flight> searchDirectFlight(string origin, string destination)
+        {
+            var filteredFlights = Flights.Where(f =>
+            f.Origin.ToLower().Contains(origin.ToLower()) &&
+            f.Destination.ToLower().Contains(destination.ToLower())).ToList();
+            return filteredFlights;
         }
 
         [HttpGet]
@@ -28,9 +36,7 @@ namespace DCXAir_API.Controllers
         {
             try
             {
-                // Deserializamos el JSON en una lista de objetos Flight
                 List<Flight> flights = Flights;
-            
                 // Retornar los vuelos como una respuesta JSON
                 return Ok(flights);
             }
@@ -53,9 +59,7 @@ namespace DCXAir_API.Controllers
             }
 
             // Search One Way Flight
-            var filteredOneWayFlights = Flights.Where(f =>
-            f.Origin.ToLower().Contains(filter.Origin.ToLower()) &&
-            f.Destination.ToLower().Contains(filter.Destination.ToLower())).ToList();
+            var filteredOneWayFlights = searchDirectFlight(filter.Origin, filter.Destination);
 
             if (filteredOneWayFlights.Count == 0)
             {
@@ -72,21 +76,28 @@ namespace DCXAir_API.Controllers
                 return BadRequest("Debe proporcionar un origen válido.");
             }
 
-            var filteredRoundTripFlights = Flights.Where(f =>
-            f.Origin.ToLower().Contains(filter.Origin.ToLower()) &&
-            f.Destination.ToLower().Contains(filter.Destination.ToLower()) ||
-            f.Origin.ToLower().Contains(filter.Destination.ToLower()) &&
-            f.Destination.ToLower().Contains(filter.Origin.ToLower())).ToList();
+            var filteredOneWayFlights = new List<Flight>();
+            var filteredFlightsBack = new List<Flight>();
+            // One way flight
+            filteredOneWayFlights = searchDirectFlight(filter.Origin, filter.Destination);
 
+            // Return fly
+            filteredFlightsBack = searchDirectFlight(filter.Destination, filter.Origin);
 
-
-            if (filteredRoundTripFlights.Count == 0)
+            if (filteredOneWayFlights.Count == 0)
             {
                 return NotFound("There is no flights from the origin.");
             }
 
-            
-            return Ok(filteredRoundTripFlights);
+            if (filteredFlightsBack.Count == 0)
+            {
+                return NotFound("There is no flights from the destination.");
+            }
+
+            var combinedFlights = new List<Flight>();
+            combinedFlights.AddRange(filteredOneWayFlights);
+            combinedFlights.AddRange(filteredFlightsBack);
+            return Ok(combinedFlights);
         }
     }
 
