@@ -69,4 +69,31 @@
 
     </div>
 
+    <div class="col-md-12 text-center mt-3">
+        <!-- Botón para buscar solo ida -->
+        <button class="btn btn-primary btn-sm hover-shadow" (click)="searchFlight()"
+            id="id-button-search-flights">Search flights</button>
+
+    </div>
+
+    <div class="container mt-4 div-center">
+        <div class="row">
+            <div class="col-md-6">
+                @for (flight of flights; track $index) {
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ flight.origin }} to {{ flight.destination }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>Price:</strong> ${{ flight.price }}</p>
+                            <p><strong>Flight carrier:</strong> {{ flight.transport.flightCarrier}}</p>
+                            <p><strong>Flight number:</strong> {{ flight.transport.flightNumber}}</p>
+                            <!-- <button class="btn btn-primary" (click)="bookFlight(flight.id)">Book Now</button> -->
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
 </div>

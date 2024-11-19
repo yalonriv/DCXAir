@@ -30,17 +30,33 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
     this.flightFilterDTO = new FlightFilterDTO();
-    this.flightFilterDTO.origin= 'MZL';
-    this.flightFilterDTO.destination = 'PEI';
-    this.flightFilterDTO.coinToConvert = 'USD';
-    this.searchFlightOneWay();
+  }
+  
+  public searchFlight(){
+    if(this.selectedFlightType === "one-way"){
+      this.searchFlightOneWay();
+    }
+    else{
+      this.searchFlightByRoundTrip();
+    }
   }
   
   public searchFlightOneWay(){
     this.flightService.searchFlightOneWay(this.flightFilterDTO).subscribe(
       (response) => {
         this.flights = response;  // Aquí se almacenan los vuelos obtenidos
-        console.log('Filtered flights:', this.flights[0].price);
+        console.log('Filtered flights:', this.flights);
+      },
+      (error) => {
+        console.error('Error al obtener vuelos:', error);
+      }
+    );
+  }
+
+  public searchFlightByRoundTrip(){
+    this.flightService.searchFlightRoundTrip(this.flightFilterDTO).subscribe(
+      (response) => {
+        this.flights = response;
       },
       (error) => {
         console.error('Error al obtener vuelos:', error);

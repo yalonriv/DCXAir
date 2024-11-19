@@ -64,8 +64,34 @@ namespace DCXAir_API.Controllers
             return Ok(filteredOneWayFlights);
         }
 
+        [HttpPost("filterByRoundTrip")]
+        public IActionResult GetFlightsByRoundTrip([FromBody] FlightFilterDTO filter)
+        {
+            if (filter == null || string.IsNullOrEmpty(filter.Origin) || string.IsNullOrEmpty(filter.Destination))
+            {
+                return BadRequest("Debe proporcionar un origen válido.");
+            }
 
-    } 
+            var filteredRoundTripFlights = Flights.Where(f =>
+            f.Origin.ToLower().Contains(filter.Origin.ToLower()) &&
+            f.Destination.ToLower().Contains(filter.Destination.ToLower()) ||
+            f.Origin.ToLower().Contains(filter.Destination.ToLower()) &&
+            f.Destination.ToLower().Contains(filter.Origin.ToLower())).ToList();
 
 
-}
+
+            if (filteredRoundTripFlights.Count == 0)
+            {
+                return NotFound("There is no flights from the origin.");
+            }
+
+            
+            return Ok(filteredRoundTripFlights);
+        }
+    }
+
+
+} 
+
+
+
