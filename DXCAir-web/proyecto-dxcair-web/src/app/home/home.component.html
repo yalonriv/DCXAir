@@ -1,49 +1,72 @@
-<p>home works!</p>
+<div class="container min-vh-100">
 
-@if(isLoggedIn){
-<p>Bienvenido {{username}}</p>
-} @else{
-<p>Loggearse</p>
-}
+    <div class="text-center">
+        <h1>manage-flights works!</h1>
+    </div>
 
-<div class="col-sm-4">
-    <!-- Lista de selección (select) para "origins" -->
-    <label for="origin" class="col-sm-8 col-form-label">Select an origin:</label>
-    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
-        @for (item of origins; track $index)
-        {
-        <option [value]="item">
-            {{ item }}
-        </option>
-        }
-    </select>
-</div>
-<div class="col-md-4">
-    <!-- Lista de selección (select) para "destinations" -->
-    <label for="destination" class="col-sm-8 col-form-label">Select a destination:</label>
-    <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
-        @for (item of destinations; track $index)
-        {
-        <option [value]="item">
-            {{ item }}
-        </option>
-        }
-    </select>
-</div>
+    <div class="form-group d-flex flex-column align-items-center">
 
-<div class="col-md-4">
-    <!-- Lista de selección (select) para "coins" -->
-    <label for="coin" class="col-sm-8 col-form-label">Select a coin:</label>
-        <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
-            @for (item of coins; track $index)
-            {
-            <option [value]="item">
-                {{ item }}
-            </option>
-            }
-    </select>
-</div>
+        <div class="row">
 
-<div>
-    <p>Selected Value: {{ selectedValue }}</p>
+            <div class="col-sm-4">
+                <!-- Lista de selección (select) para "origins" -->
+                <label for="origin" class="col-sm-8 col-form-label">Select an origin:</label>
+                <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
+                    @for (item of origins; track $index)
+                    {
+                    <option [value]="item">
+                        {{ item }}
+                    </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-4">
+                <!-- Lista de selección (select) para "destinations" -->
+                <label for="destination" class="col-sm-8 col-form-label">Select a destination:</label>
+                <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
+                    @for (item of destinations; track $index)
+                    {
+                    <option [value]="item">
+                        {{ item }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <!-- Lista de selección (select) para "coins" -->
+                <label for="coin" class="col-sm-8 col-form-label">Select a coin:</label>
+                <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
+                    @for (item of coins; track $index)
+                    {
+                    <option [value]="item">
+                        {{ item }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+        </div>
+
+        <div class="div-center mt-4">
+            <div class="col-md-12">
+                <div class="button-group">
+                    <div class="form-check form-check-inline mr-3">
+                        <input class="form-check-input" type="radio" id="one-way" name="flight-type" value="one-way" [(ngModel)]="selectedFlightType">
+                        <label class="form-check-label" for="one-way">
+                            <span class="badge badge-primary text-dark">One way</span>
+                        </label>
+                    </div>
+            
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="round-trip" name="flight-type" value="round-trip" [(ngModel)]="selectedFlightType">
+                        <label class="form-check-label" for="round-trip">
+                            <span class="badge badge-success text-dark">Round trip</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
 </div>
