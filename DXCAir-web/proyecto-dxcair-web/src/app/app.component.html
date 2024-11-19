@@ -1,1 +1,27 @@
-<app-home></app-home>
+
+<!-- Header -->
+<header>
+    <nav>
+      <ul>
+        <li><a routerLink="">Inicio</a></li>
+        <li><a routerLink="/about">Acerca de</a></li>
+        <li><a routerLink="/services">Servicios</a></li>
+        <li><a routerLink="/contact">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <!-- Footer -->
+  <footer class="footer bg-dark text-white text-center p-3 mt-auto">
+    <p>&copy; 2024 Mi Empresa. Todos los derechos reservados.</p>
+    <nav>
+      <ul>
+        <li><a routerLink="/privacy">Política de privacidad</a></li>
+        <li><a routerLink="/terms">Términos y condiciones</a></li>
+      </ul>
+    </nav>
+  </footer>

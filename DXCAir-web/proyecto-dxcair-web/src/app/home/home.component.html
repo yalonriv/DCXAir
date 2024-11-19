@@ -1,99 +1,108 @@
 <div class="container min-vh-100">
-
+   
     <div class="text-center">
         <h1>manage-flights works!</h1>
     </div>
 
     <div class="form-group d-flex flex-column align-items-center">
 
-        <div class="row">
+        <div class="transparent-div-combined">
+            <div class="row">
 
-            <div class="col-sm-4">
-                <!-- Lista de selección (select) para "origins" -->
-                <label for="origin" class="col-sm-8 col-form-label">Select an origin:</label>
-                <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
-                    @for (item of origins; track $index)
-                    {
-                    <option [value]="item">
-                        {{ item }}
-                    </option>
-                    }
-                </select>
+                <div class="col-sm-4">
+                    <!-- Lista de selección (select) para "origins" -->
+                    <label for="origin" class="col-sm-8 col-form-label">Select an origin:</label>
+                    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
+                        @for (item of origins; track $index)
+                        {
+                        <option [value]="item">
+                            {{ item }}
+                        </option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <!-- Lista de selección (select) para "destinations" -->
+                    <label for="destination" class="col-sm-8 col-form-label">Select a destination:</label>
+                    <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
+                        @for (item of destinations; track $index)
+                        {
+                        <option [value]="item">
+                            {{ item }}
+                        </option>
+                        }
+                    </select>
+                </div>
+    
+                <div class="col-md-4">
+                    <!-- Lista de selección (select) para "coins" -->
+                    <label for="coin" class="col-sm-8 col-form-label">Select a coin:</label>
+                    <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
+                        @for (item of coins; track $index)
+                        {
+                        <option [value]="item">
+                            {{ item }}
+                        </option>
+                        }
+                    </select>
+                </div>
+    
             </div>
-            <div class="col-md-4">
-                <!-- Lista de selección (select) para "destinations" -->
-                <label for="destination" class="col-sm-8 col-form-label">Select a destination:</label>
-                <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
-                    @for (item of destinations; track $index)
-                    {
-                    <option [value]="item">
-                        {{ item }}
-                    </option>
-                    }
-                </select>
-            </div>
-
-            <div class="col-md-4">
-                <!-- Lista de selección (select) para "coins" -->
-                <label for="coin" class="col-sm-8 col-form-label">Select a coin:</label>
-                <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
-                    @for (item of coins; track $index)
-                    {
-                    <option [value]="item">
-                        {{ item }}
-                    </option>
-                    }
-                </select>
-            </div>
-
-        </div>
-
-        <div class="div-center mt-4">
-            <div class="col-md-12">
-                <div class="button-group">
-                    <div class="form-check form-check-inline mr-3">
-                        <input class="form-check-input" type="radio" id="one-way" name="flight-type" value="one-way" [(ngModel)]="selectedFlightType">
-                        <label class="form-check-label" for="one-way">
-                            <span class="badge badge-primary text-dark">One way</span>
-                        </label>
-                    </div>
-            
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="round-trip" name="flight-type" value="round-trip" [(ngModel)]="selectedFlightType">
-                        <label class="form-check-label" for="round-trip">
-                            <span class="badge badge-success text-dark">Round trip</span>
-                        </label>
+    
+            <div class="div-center mt-4">
+                <div class="col-md-12">
+                    <div class="button-group">
+                        <div class="form-check form-check-inline mr-3">
+                            <input class="form-check-input" type="radio" id="one-way" name="flight-type" value="one-way" [(ngModel)]="selectedFlightType">
+                            <label class="form-check-label" for="one-way">
+                                <span class="badge badge-primary text-dark">One way</span>
+                            </label>
+                        </div>
+                
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="round-trip" name="flight-type" value="round-trip" [(ngModel)]="selectedFlightType">
+                            <label class="form-check-label" for="round-trip">
+                                <span class="badge badge-success text-dark">Round trip</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+    
+                <div class="col-md-12 text-center mt-3">
+                    <!-- Botón para buscar solo ida -->
+                    <button class="btn btn-primary btn-sm hover-shadow" (click)="searchFlight()"
+                        id="id-button-search-flights">Search flights</button>
+            
+                </div>
+    
+        </div>
+        
     </div>
 
-    <div class="col-md-12 text-center mt-3">
-        <!-- Botón para buscar solo ida -->
-        <button class="btn btn-primary btn-sm hover-shadow" (click)="searchFlight()"
-            id="id-button-search-flights">Search flights</button>
+    
 
-    </div>
-
-    <div class="container mt-4 div-center">
-        <div class="row">
-            <div class="col-md-6">
-                @for (flight of flights; track $index) {
-                    <div class="card mb-4">
-                        <div class="card-header">
+    
+    <div class="container mt-4 text-center mt-3">
+        <div class="row justify-content-center">
+            <!-- Recorremos todas las tarjetas con un bucle -->
+            @for (flight of flights; track $index) {
+                
+                <div class="col-md-3 mb-4"> <!-- Utilizamos col-md-4 para tarjetas de 3 por fila en pantallas medianas -->
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
                             <h5 class="card-title">{{ flight.origin }} to {{ flight.destination }}</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body bg-light">
                             <p><strong>Price:</strong> ${{ flight.price }}</p>
                             <p><strong>Flight carrier:</strong> {{ flight.transport.flightCarrier}}</p>
                             <p><strong>Flight number:</strong> {{ flight.transport.flightNumber}}</p>
-                            <!-- <button class="btn btn-primary" (click)="bookFlight(flight.id)">Book Now</button> -->
                         </div>
                     </div>
-                }
-            </div>
+                </div>
+            }
         </div>
     </div>
+    
+    
 
 </div>

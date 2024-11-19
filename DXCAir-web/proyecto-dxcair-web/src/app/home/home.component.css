@@ -1,0 +1,6 @@
+.transparent-div-combined {
+    background-color: rgba(78, 69, 199, 0.3); /* Fondo rojo con 30% de transparencia */
+    border: 2px solid rgba(186, 174, 214, 0.7); /* Borde rojo con 70% de opacidad */
+    padding: 20px;
+    color: black; /* Color del texto */
+}

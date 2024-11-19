@@ -30,6 +30,45 @@ namespace DCXAir_API.Controllers
             return filteredFlights;
         }
 
+        private List<Flight> searchFlightsWithStopOver(string origen, string destino)
+        {
+            var flightsFromOrigin = Flights.Where(vuelo => vuelo.Origin == origen).ToList(); // Buscar vuelos desde el origen
+
+            var flightsWithStopOver = new List<Flight>();
+
+            foreach (var flightFromOrigun in flightsFromOrigin)
+            {
+                // Buscar vuelos desde la escala (es decir, el destino del primer vuelo) hacia el destino final
+                var stopOverFlights = Flights.Where(stopOverFlight => stopOverFlight.Origin == flightFromOrigun.Destination && stopOverFlight.Destination == destino).ToList();
+
+                // Si hay vuelos desde la escala al destino, los agregamos a la lista de vuelos con escala
+                foreach (var stopOverFlight in stopOverFlights)
+                {
+                    flightsWithStopOver.Add(flightFromOrigun);
+                    flightsWithStopOver.Add(stopOverFlight);
+                }
+            }
+
+            return flightsWithStopOver;
+        }
+
+        private List<Flight> searchFlights(string origin, string destination)
+        {
+            // First we search direct flightd
+            var flightsDirect = searchDirectFlight(origin, destination);
+            var resultFlights = new List<Flight>();
+            if (flightsDirect.Count != 0)
+            {
+                resultFlights = flightsDirect;
+            }
+            // If there aren't direct flight, it's searched a flight with stopOver
+            else
+            {
+                resultFlights = searchFlightsWithStopOver(origin, destination);
+            }
+            return resultFlights;
+        }
+
         [HttpGet]
         [Route("getAllFlights")]
         public IActionResult GetFlights()
@@ -58,8 +97,8 @@ namespace DCXAir_API.Controllers
                 return BadRequest("Debe proporcionar un origen válido.");
             }
 
-            // Search One Way Flight
-            var filteredOneWayFlights = searchDirectFlight(filter.Origin, filter.Destination);
+            // First we search direct flightd
+            var filteredOneWayFlights = searchFlights(filter.Origin, filter.Destination);
 
             if (filteredOneWayFlights.Count == 0)
             {
@@ -78,11 +117,11 @@ namespace DCXAir_API.Controllers
 
             var filteredOneWayFlights = new List<Flight>();
             var filteredFlightsBack = new List<Flight>();
-            // One way flight
-            filteredOneWayFlights = searchDirectFlight(filter.Origin, filter.Destination);
+            // Flighs one way
+            filteredOneWayFlights = searchFlights(filter.Origin, filter.Destination);
 
-            // Return fly
-            filteredFlightsBack = searchDirectFlight(filter.Destination, filter.Origin);
+            // Flighs one way
+            filteredFlightsBack = searchFlights(filter.Destination, filter.Origin);
 
             if (filteredOneWayFlights.Count == 0)
             {

@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header {
+    background-color: #3711c4;
+    color: white;
+    padding: 10px 0;
+  }
+  
+  header nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  header nav ul li {
+    display: inline;
+    margin: 0 15px;
+  }
+  
+  header nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  footer {
+    background-color: #3711c4;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  footer nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  footer nav ul li {
+    display: inline;
+    margin: 0 10px;
+  }
+  
+  footer nav ul li a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  body {
+    background-image: url('/assets/aeroplane-13.jpg'); /* Ruta de la imagen */
+    background-size: cover; /* La imagen cubrirá toda la pantalla */
+    background-position: center center; /* Centra la imagen */
+    background-attachment: fixed; /* Hace que la imagen de fondo se mantenga fija mientras se hace scroll */
+    height: 100vh; /* Asegura que el body tenga una altura de vista completa */
+    margin: 0; /* Elimina el margen por defecto */
+}
