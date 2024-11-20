@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using DCXAir_API.Models;
 using Newtonsoft.Json;
+using DCXAir_API.Utils;
 
 namespace DCXAir_API.Controllers
 {
@@ -28,6 +29,17 @@ namespace DCXAir_API.Controllers
             f.Origin.ToLower().Contains(origin.ToLower()) &&
             f.Destination.ToLower().Contains(destination.ToLower())).ToList();
             return filteredFlights;
+        }
+
+        private List<Flight> convertCoinOfPriceFlights(string coin, List<Flight> FlightsList)
+        {
+            foreach (var flight in FlightsList)
+            {
+                decimal price = decimal.Parse(flight.Price);
+                decimal priceConverted = CoinConversorUtil.ConvertCoin(price, coin);
+                flight.Price = priceConverted.ToString();
+            }
+            return FlightsList;
         }
 
         private List<Flight> searchFlightsWithStopOver(string origen, string destino)
@@ -112,6 +124,7 @@ namespace DCXAir_API.Controllers
             {
                 return NotFound("There is no flights with the search criterial.");
             }
+            convertCoinOfPriceFlights(filter.CoinToConvert, filteredOneWayFlights);
             return Ok(filteredOneWayFlights);
         }
 
@@ -144,6 +157,7 @@ namespace DCXAir_API.Controllers
             var combinedFlights = new List<Flight>();
             combinedFlights.AddRange(filteredOneWayFlights);
             combinedFlights.AddRange(filteredFlightsBack);
+            convertCoinOfPriceFlights(filter.CoinToConvert, combinedFlights);
             return Ok(combinedFlights);
         }
     }

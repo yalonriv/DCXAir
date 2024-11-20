@@ -42,21 +42,30 @@ export class FlightsService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
-    });
+    }).pipe(catchError(error => {
+      // Enviar el error para manejarlo en el componente
+      return throwError(() => new Error(error.error));
+    }));;
   }
 
   searchFlightOrigins(): Observable<string[]>{
     return this.http.get<string[]>(this.apiUrl3, {headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'accept': '*/*'
-    })});
+    })}).pipe(catchError(error => {
+      // Enviar el error para manejarlo en el componente
+      return throwError(() => new Error(error.error));
+    }));;
   }
 
   searchFlightDestinations(): Observable<string[]>{
     return this.http.get<string[]>(this.apiUrl4, {headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'accept': '*/*'
-    })});
+    })}).pipe(catchError(error => {
+      // Enviar el error para manejarlo en el componente
+      return throwError(() => new Error(error.error));
+    }));;
   }
 
   

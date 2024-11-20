@@ -1,7 +1,12 @@
-<h1 mat-dialog-title>Error</h1>
-<div mat-dialog-content>
-  <p>{{ errorMessage }}</p>
+<div class="error-dialog-container">
+  <h1 mat-dialog-title class="text-center">
+    <span class="badge badge-primary text-dark text-center">Error</span></h1>
+  <div class="mat-dialog-content">
+    <p><span class="badge badge-primary text-dark text-center">{{ errorMessage }}</span></p>
+  </div>
+  <div class="mat-dialog-actions mb-1">
+    <button mat-button mat-dialog-close (click)="close()" 
+    class="btn btn-danger btn-sm hover-shadow">Cerrar</button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cerrar</button>
-</div>
+

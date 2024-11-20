@@ -5,3 +5,21 @@
     color: black; /* Color del texto */
     border-radius: 10px;
 }
+
+.button-search {
+    background-color: #3711c4;  /* Color de fondo (verde) */
+    color: white;                /* Color del texto */
+    border: none;                /* Sin borde */
+    padding: 5px 10px;          /* Espaciado interno */
+    text-align: center;          /* Alinear texto al centro */
+    text-decoration: none;       /* Sin subrayado */
+    display: inline-block;       /* Alineación en línea */
+    font-size: 16px;             /* Tamaño de fuente */
+    cursor: pointer;            /* Cambiar el cursor a mano */
+    border-radius: 5px;          /* Bordes redondeados */
+  }
+  
+  .button-search:hover {
+    background-color: #4671c0;  /* Cambia el color de fondo cuando el ratón pasa sobre el botón */
+  }
+  

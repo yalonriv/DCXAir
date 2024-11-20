@@ -1,0 +1,17 @@
+.mat-dialog-content {
+    font-size: 16px;
+    color: #161515;
+  }
+  
+  .mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .error-dialog-container {
+    background-color: rgba(138, 131, 131, 0.8); /* Fondo rojo con 30% de transparencia */
+    border: 2px solid rgba(199, 183, 182, 0.3); /* Borde rojo con 70% de opacidad */
+    padding: 10px;
+    color: black; /* Color del texto */
+    border-radius: 10px;
+}

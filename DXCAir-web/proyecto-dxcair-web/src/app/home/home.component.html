@@ -14,13 +14,17 @@
                     <!-- Lista de selección (select) para "origins" -->
                     <label for="origin" class="col-sm-8 col-form-label"><span class="badge badge-success">Select an
                             origin</span></label>
-                    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control"
-                        (change)="updateFilteredOptions()" required>
+                    <select id="origin" required [(ngModel)]="flightFilterDTO.origin" class="form-control"
+                        (change)="updateFilteredOptions()">
+                        <option value="" disabled selected>Selecciona an origin</option>
                         @for (item of origins; track $index)
                         {
                         <option [value]="item">
                             {{ item }}
                         </option>
+                        }
+                        @if(flightFilterDTO.origin === ''){
+                            <span class="error">Por favor, selecciona una opción.</span>
                         }
                     </select>
                 </div>
@@ -78,10 +82,13 @@
                     </div>
                 </div>
             </div>
-
+            @if(formIsFilledOut === false){
+                <p>Debe llenar todos los campos</p>
+            }
+            
             <div class="col-md-12 text-center mt-3">
                 <!-- Botón para buscar solo ida -->
-                <button class="btn btn-primary btn-sm hover-shadow" (click)="searchFlight()"
+                <button class="button-search" (click)="searchFlight()"
                     id="id-button-search-flights">Search flights</button>
 
             </div>
