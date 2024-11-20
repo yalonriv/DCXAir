@@ -12,9 +12,10 @@
 
                 <div class="col-sm-4">
                     <!-- Lista de selección (select) para "origins" -->
-                    <label for="origin" class="col-sm-8 col-form-label"><span
-                            class="badge badge-success">Select an origin</span></label>
-                    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control">
+                    <label for="origin" class="col-sm-8 col-form-label"><span class="badge badge-success">Select an
+                            origin</span></label>
+                    <select id="origin" [(ngModel)]="flightFilterDTO.origin" class="form-control"
+                        (change)="updateFilteredOptions()" required>
                         @for (item of origins; track $index)
                         {
                         <option [value]="item">
@@ -25,22 +26,26 @@
                 </div>
                 <div class="col-md-4">
                     <!-- Lista de selección (select) para "destinations" -->
-                    <label for="destination" class="col-sm-8 col-form-label"><span
-                            class="badge badge-success">Select a destination</span></label>
+                    <label for="destination" class="col-sm-8 col-form-label"><span class="badge badge-success">Select a
+                            destination</span></label>
+
                     <select id="destination" [(ngModel)]="flightFilterDTO.destination" class="form-control">
+                        @if(isSelectedOrigin){
                         @for (item of destinations; track $index)
                         {
                         <option [value]="item">
                             {{ item }}
                         </option>
                         }
+                        }
+
                     </select>
                 </div>
 
                 <div class="col-md-4">
                     <!-- Lista de selección (select) para "coins" -->
-                    <label for="coin" class="col-sm-8 col-form-label"><span
-                        class="badge badge-success">Select a coin</span></label>
+                    <label for="coin" class="col-sm-8 col-form-label"><span class="badge badge-success">Select a
+                            coin</span></label>
                     <select id="coin" [(ngModel)]="flightFilterDTO.coinToConvert" class="form-control">
                         @for (item of coins; track $index)
                         {

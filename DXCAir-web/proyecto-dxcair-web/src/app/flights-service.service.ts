@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FlightFilterDTO } from './DTOs/flight.filter.dto';
 import { Flight } from './DTOs/flight';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,11 @@ export class FlightsService {
     return this.http.post<Flight[]>(this.apiUrl, filter, {headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'accept': '*/*'
-    })});
+    })}).pipe(catchError(error => {
+      // Enviar el error para manejarlo en el componente
+      return throwError(() => new Error(error.error));
+    }));
+    
   }
 
   searchFlightRoundTrip(filter: FlightFilterDTO): Observable<Flight[]> {
@@ -54,4 +58,6 @@ export class FlightsService {
       'accept': '*/*'
     })});
   }
+
+  
 }

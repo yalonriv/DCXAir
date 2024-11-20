@@ -90,7 +90,7 @@ namespace DCXAir_API.Controllers
             HashSet<string> destinations = new HashSet<string>();
             foreach (var flight in Flights)
             {
-                destinations.Add(flight.Destination);
+                destinations.Add(flight.Destination);                                                                              
             }
 
             return Ok(new List<string>(destinations));

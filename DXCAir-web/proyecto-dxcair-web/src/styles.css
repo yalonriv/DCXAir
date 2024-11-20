@@ -116,3 +116,6 @@ nav ul li a {
 nav ul li a:hover {
     color: #007bff;          /* Cambia el color al pasar el ratón */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
