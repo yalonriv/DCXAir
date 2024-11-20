@@ -70,23 +70,31 @@ namespace DCXAir_API.Controllers
         }
 
         [HttpGet]
-        [Route("getAllFlights")]
-        public IActionResult GetFlights()
+        [Route("getOrigins")]
+        public IActionResult GetOrigins()
         {
-            try
+            HashSet<string> origins = new HashSet<string>();
+            foreach (var flight in Flights)
             {
-                List<Flight> flights = Flights;
-                // Retornar los vuelos como una respuesta JSON
-                return Ok(flights);
+                origins.Add(flight.Origin);
             }
-            catch (FileNotFoundException)
+
+            return Ok(new List<string>(origins));
+
+        }
+
+        [HttpGet]
+        [Route("getDestinations")]
+        public IActionResult GetDestinations()
+        {
+            HashSet<string> destinations = new HashSet<string>();
+            foreach (var flight in Flights)
             {
-                return NotFound("El archivo JSON no fue encontrado.");
+                destinations.Add(flight.Destination);
             }
-            catch (JsonException)
-            {
-                return BadRequest("Hubo un error al procesar el archivo JSON.");
-            }
+
+            return Ok(new List<string>(destinations));
+
         }
 
         [HttpPost("filterByOneWay")]

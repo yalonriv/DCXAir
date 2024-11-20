@@ -21,8 +21,8 @@ export class HomeComponent implements OnInit {
   selectedFlightType = "";
   flights: Flight[] = [];  // Para almacenar los vuelos filtrados
   public coins: string[] = ['USD', 'EUR', 'COP', 'SOL'];
-  public origins: string[] = ['MZL', 'PEI', 'BOG', 'JFK', 'BCN', 'MAD'];
-  public destinations: string[] = ['MZL', 'PEI', 'BOG', 'JFK', 'BCN', 'MAD'];
+  public origins: string[];
+  public destinations: string[];
   public flightFilterDTO;
   
 
@@ -30,6 +30,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //throw new Error('Method not implemented.');
     this.flightFilterDTO = new FlightFilterDTO();
+    this.searchOriginFlights();
+    this.searchDestinationFlights();
   }
   
   public searchFlight(){
@@ -63,5 +65,28 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+
+  private searchOriginFlights(){
+    this.flightService.searchFlightOrigins().subscribe(
+      (response) => {
+        this.origins = response;
+      },
+      (error) => {
+        console.error('Error al obtener vuelos:', error);
+      }
+    );
+  }
+
+  private searchDestinationFlights(){
+    this.flightService.searchFlightDestinations().subscribe(
+      (response) => {
+        this.destinations = response;
+      },
+      (error) => {
+        console.error('Error al obtener vuelos:', error);
+      }
+    );
+  }
+  
   
 }

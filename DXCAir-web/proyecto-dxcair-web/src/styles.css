@@ -28,29 +28,45 @@ body {
     text-decoration: none;
   }
   
-  footer {
+  /* Asegúrate de que el <footer> ocupe el 100% del ancho */
+footer {
     background-color: #3711c4;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
-  
-  footer nav ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  footer nav ul li {
-    display: inline;
-    margin: 0 10px;
-  }
-  
-  footer nav ul li a {
-    color: #007bff;
-    text-decoration: none;
-  }
+    text-align: center; /* Centra el contenido dentro del footer */
+    padding: 20px 0; /* Relleno para un mejor espaciado */
+}
+
+/* Contenedor del <nav> */
+footer nav {
+    display: flex;           /* Usamos flexbox para alinear los elementos */
+    justify-content: center; /* Centra los elementos dentro del <nav> */
+    align-items: center;     /* Alinea los elementos verticalmente en el centro */
+}
+
+/* Lista de navegación */
+footer nav ul {
+    display: flex;           /* Usamos flexbox para colocar los elementos en una fila */
+    padding: 0;              /* Elimina el relleno de la lista */
+    margin: 0;               /* Elimina el margen de la lista */
+    list-style: none;        /* Elimina los puntos de la lista */
+}
+
+/* Elementos de la lista */
+footer nav ul li {
+    margin: 0 10px;          /* Espacio entre los elementos de la lista */
+}
+
+/* Enlaces dentro de los elementos de la lista */
+footer nav ul li a {
+    color: #dae2eb;          /* Color del texto de los enlaces */
+    text-decoration: none;   /* Elimina el subrayado del enlace */
+    font-size: 16px;         /* Tamaño de la fuente */
+}
+
+/* Estilo opcional para los enlaces al pasar el ratón */
+footer nav ul li a:hover {
+    color: #007bff;          /* Cambia el color al pasar el ratón */
+}
+
   
   body {
     background-image: url('/assets/aeroplane-13.jpg'); /* Ruta de la imagen */
@@ -59,4 +75,44 @@ body {
     background-attachment: fixed; /* Hace que la imagen de fondo se mantenga fija mientras se hace scroll */
     height: 100vh; /* Asegura que el body tenga una altura de vista completa */
     margin: 0; /* Elimina el margen por defecto */
+}
+
+/* Contenedor principal para los elementos */
+.header-container {
+    display: flex;           /* Usamos flexbox para alinearlos en una fila */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center;     /* Centra los elementos verticalmente */
+    padding: 10px;           /* Espaciado opcional alrededor de los elementos */
+}
+
+/* Opcional: si deseas ajustar el estilo del texto del <p> */
+.header-container p {
+    margin-right: 50px;      /* Espacio entre el texto y el menú */
+    font-size: 24px;         /* Tamaño del texto */
+    font-weight: bold;   
+    margin-left: 50px;
+      /* Hacer el texto en negrita */
+}
+
+/* Estilos para el <nav> y su lista */
+nav ul {
+    display: flex;           /* Coloca los elementos de la lista en una fila */
+    margin: 0;               /* Elimina el margen predeterminado */
+    padding: 0;              /* Elimina el relleno predeterminado */
+    list-style: none;        /* Elimina los puntos de la lista */
+}
+
+nav ul li {
+    margin-left: 20px;       /* Espacio entre los elementos de la lista */
+}
+
+nav ul li a {
+    text-decoration: none;   /* Elimina el subrayado de los enlaces */
+    color: #333;             /* Color del texto */
+    font-size: 18px;         /* Tamaño de la fuente */
+}
+
+/* Estilo opcional para efectos de hover en los enlaces */
+nav ul li a:hover {
+    color: #007bff;          /* Cambia el color al pasar el ratón */
 }

@@ -33,8 +33,18 @@
   },
   {
     "ContainingType": "DCXAir_API.Controllers.FlightsController",
-    "Method": "GetFlights",
-    "RelativePath": "flights/getAllFlights",
+    "Method": "GetDestinations",
+    "RelativePath": "flights/getDestinations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DCXAir_API.Controllers.FlightsController",
+    "Method": "GetOrigins",
+    "RelativePath": "flights/getOrigins",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

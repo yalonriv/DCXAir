@@ -16,6 +16,13 @@ export class FlightsService {
   // URL de la API .NET donde está expuesto el servicio
   private apiUrl2 = 'https://localhost:7057/flights/filterByRoundTrip';  // Cambia esta URL según corresponda
 
+  // URL de la API .NET donde está expuesto el servicio
+  private apiUrl3 = 'https://localhost:7057/flights/getOrigins';  // Cambia esta URL según corresponda
+
+  // URL de la API .NET donde está expuesto el servicio
+  private apiUrl4 = 'https://localhost:7057/flights/getDestinations';  // Cambia esta URL según corresponda
+
+
    // Inyectar HttpClient para hacer solicitudes HTTP
    constructor(private http: HttpClient) { }
 
@@ -32,5 +39,19 @@ export class FlightsService {
         'Content-Type': 'application/json'
       })
     });
+  }
+
+  searchFlightOrigins(): Observable<string[]>{
+    return this.http.get<string[]>(this.apiUrl3, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'accept': '*/*'
+    })});
+  }
+
+  searchFlightDestinations(): Observable<string[]>{
+    return this.http.get<string[]>(this.apiUrl4, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'accept': '*/*'
+    })});
   }
 }
