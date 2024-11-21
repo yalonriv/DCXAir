@@ -23,9 +23,6 @@
                             {{ item }}
                         </option>
                         }
-                        @if(flightFilterDTO.origin === ''){
-                            <span class="error">Por favor, selecciona una opción.</span>
-                        }
                     </select>
                 </div>
                 <div class="col-md-4">
@@ -82,14 +79,12 @@
                     </div>
                 </div>
             </div>
-            @if(formIsFilledOut === false){
-                <p>Debe llenar todos los campos</p>
-            }
-            
+
+
             <div class="col-md-12 text-center mt-3">
                 <!-- Botón para buscar solo ida -->
-                <button class="button-search" (click)="searchFlight()"
-                    id="id-button-search-flights">Search flights</button>
+                <button class="button-search" (click)="searchFlight()" id="id-button-search-flights">Search
+                    flights</button>
 
             </div>
 
@@ -99,6 +94,13 @@
 
 
 
+        @if(formIsFilledOut === false){
+        <div class="info-error-form mt-2">
+        
+            <p><span class="badge badge-success text-dark">You should fill out the form</span></p>
+        
+        </div>
+        }
 
         <div class="container mt-4 text-center mt-3">
             <div class="row justify-content-center">

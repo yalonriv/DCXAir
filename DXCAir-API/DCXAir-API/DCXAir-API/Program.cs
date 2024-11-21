@@ -1,13 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios para controlar las solicitudes HTTP
-builder.Services.AddControllers();  // Asegúrate de llamar a AddControllers()
+builder.Services.AddControllers(); 
 
-// Si estás usando Swagger, agrega los servicios de Swagger también
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Agregar configuración de CORS (si es necesario)
+
+
+// configuración de CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowLocalhost4200", policy =>
@@ -19,6 +19,15 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.MapGet("/", (ILogger<Program> logger) =>
+{
+    if (logger == null) throw new ArgumentNullException(nameof(logger));
+
+    logger.LogInformation("Hello, this is a log message!");
+
+    return "Hello World!";
+});
 
 // Usar CORS
 app.UseCors("AllowLocalhost4200");

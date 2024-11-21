@@ -1,8 +1,36 @@
 [
   {
+    "ContainingType": "Program\u002B\u003C\u003Ec",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_1",
+    "RelativePath": "",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "DCXAir_API.Controllers.FlightsController",
+    "Method": "GetDestinations",
+    "RelativePath": "flights/getDestinations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "DCXAir_API.Controllers.FlightsController",
     "Method": "GetFlightsByOrigin",
-    "RelativePath": "flights/filterByOneWay",
+    "RelativePath": "flights/getFlightOneWay",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -18,7 +46,7 @@
   {
     "ContainingType": "DCXAir_API.Controllers.FlightsController",
     "Method": "GetFlightsByRoundTrip",
-    "RelativePath": "flights/filterByRoundTrip",
+    "RelativePath": "flights/getFlightsRoundTrip",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -33,16 +61,6 @@
   },
   {
     "ContainingType": "DCXAir_API.Controllers.FlightsController",
-    "Method": "GetDestinations",
-    "RelativePath": "flights/getDestinations",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "DCXAir_API.Controllers.FlightsController",
     "Method": "GetOrigins",
     "RelativePath": "flights/getOrigins",
     "HttpMethod": "GET",
@@ -50,26 +68,5 @@
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "DCXAir_API.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[DCXAir_API.WeatherForecast, DCXAir-API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
   }
 ]

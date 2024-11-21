@@ -1,0 +1,7 @@
+.transparent-div-services {
+    background-color: rgba(120, 112, 233, 0.8); /* Fondo rojo con 30% de transparencia */
+    border: 2px solid rgba(141, 126, 175, 0.3); /* Borde rojo con 70% de opacidad */
+    padding: 20px;
+    color: black; /* Color del texto */
+    border-radius: 10px;
+}

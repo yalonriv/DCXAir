@@ -4,19 +4,29 @@ using Xunit;
 using DCXAir_API.Models;
 using DCXAir_API.Controllers;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Logging.Abstractions;
+/// <summary>
+///  Clase que determina las pruebas unitarias para el controlador FlightsController
+/// </summary>
 public class FlightsControllerTest
 {
-
+    //Determina el controlador a probar
     private readonly FlightsController _controller;
 
+    /// <summary>
+    ///  Constructor de la clase de pruebas
+    /// </summary>
     public FlightsControllerTest()
     {
-        // Crear el controlador, que leerá el archivo markets.json al inicializarse
-        _controller = new FlightsController();
+        // Usamos NullLogger en lugar de un logger real
+        var logger = NullLogger<FlightsController>.Instance;
+        
+        _controller = new FlightsController(logger);
     }
 
-
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetOrigins
+    /// </summary>
     [Fact]
     public void GetOrigins_ReturnsOkResult()
     {
@@ -36,6 +46,9 @@ public class FlightsControllerTest
         Assert.True(origins.Count > 0);
     }
 
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetDestinations
+    /// </summary>
     [Fact]
     public void GetDestinations_ReturnsOkResult()
     {
@@ -55,6 +68,9 @@ public class FlightsControllerTest
         Assert.True(destinations.Count > 0);
     }
 
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetFlightsByOrigin
+    /// </summary>
     [Fact]
     public void GetFlightsByOrigin_ReturnsFlights_WhenValidFilter()
     {
@@ -80,6 +96,10 @@ public class FlightsControllerTest
         Assert.True(flights.Count > 0);
     }
 
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetFlightsByOrigin
+    ///  cuando no se encuentran vuelos por un filtro inválido
+    /// </summary>
     [Fact]
     public void GetFlightsByOrigin_ReturnsBadRequest_WhenInvalidFilter()
     {
@@ -93,6 +113,9 @@ public class FlightsControllerTest
         Assert.IsType<BadRequestObjectResult>(result);
     }
 
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetFlightsByRoundTrip
+    /// </summary>
     [Fact]
     public void GetFlightsByRoundTrip_ReturnsFlights_WhenValidFilter()
     {
@@ -118,6 +141,10 @@ public class FlightsControllerTest
         Assert.True(flights.Count > 0);
     }
 
+    /// <summary>
+    ///  Método que determina las pruebas para el servicio GetFlightsByRoundTrip
+    ///  cuando no hay vuelos resultantes por un filtro inválido
+    /// </summary>
     [Fact]
     public void GetFlightsByRoundTrip_ReturnsNotFound_WhenNoReturnFlights()
     {

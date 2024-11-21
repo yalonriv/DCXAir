@@ -115,3 +115,6 @@ C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\D
 C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\obj\Debug\net8.0\DCXAir-API.Tests.pdb
 C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\obj\Debug\net8.0\DCXAir-API.Tests.genruntimeconfig.cache
 C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\obj\Debug\net8.0\ref\DCXAir-API.Tests.dll
+C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\calio\OneDrive\Escritorio\DCXAir\testFLYRDCXAir\DXCAir-API\DCXAir-API\DCXAir-API.Tests\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll

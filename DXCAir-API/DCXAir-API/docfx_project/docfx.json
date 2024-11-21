@@ -1,0 +1,17 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": ["../DCXAir-API/*.csproj", "../DCXAir-API.Tests/*.csproj"],
+          "exclude": ["../src/**/obj/**"]
+        }
+      ]
+    }
+  ],
+  "content": [
+    {
+      "files": ["../docs/*.md"]
+    }
+  ]
+}

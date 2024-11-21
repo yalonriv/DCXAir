@@ -22,4 +22,13 @@
   .button-search:hover {
     background-color: #4671c0;  /* Cambia el color de fondo cuando el ratón pasa sobre el botón */
   }
+
+  .info-error-form {
+    background-color: rgba(223, 76, 76, 0.8); /* Fondo rojo con 30% de transparencia */
+    border: 2px solid rgba(219, 9, 2, 0.3); /* Borde rojo con 70% de opacidad */
+    padding: 5px;
+    color: rgb(228, 222, 222); /* Color del texto */
+    border-radius: 10px;
+}
+
   
