@@ -12,15 +12,16 @@ namespace DCXAir_API.Controllers
     {
 
         // List that keeps the flights
-        private readonly List<Flight> Flights;
+        public List<Flight> Flights { get; set; }
 
         // Constructor for save the flights in the list Flights according with the 
         //information of the son markets
         public FlightsController()
         {
-            // Extracts the information from the json markets
             string miJson = System.IO.File.ReadAllText("markets.json");
-            Flights = JsonConvert.DeserializeObject<List<Flight>>(miJson);
+            Flights = string.IsNullOrEmpty(miJson)
+                    ? new List<Flight>()
+                    : JsonConvert.DeserializeObject<List<Flight>>(miJson);
         }
 
         private List<Flight> searchDirectFlight(string origin, string destination)

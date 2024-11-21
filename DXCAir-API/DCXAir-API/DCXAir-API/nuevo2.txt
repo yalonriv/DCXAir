@@ -1,0 +1,140 @@
+namespace DCXAir_API.Tests;
+using Moq;
+using Xunit;
+using DCXAir_API.Models;
+using DCXAir_API.Controllers;
+public class UnitTest1
+{
+    [Fact]
+    public void Test1()
+
+    {
+         private FlightsController _controller; 
+
+    [TestInitialize]
+    public void Setup()
+    {
+        // Simulamos el controlador y cargamos datos de ejemplo en memoria
+        _controller = new FlightsController();
+    }
+
+    [TestMethod]
+    public void GetOrigins_ReturnsOkResult()
+    {
+        // Ejecutamos el método
+        var result = _controller.GetOrigins();
+
+        // Verificamos que el resultado sea un OkObjectResult (200 OK)
+        Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+
+        var okResult = result as OkObjectResult;
+        var origins = okResult.Value as List<string>;
+
+        // Verificamos que la lista de orígenes no sea nula
+        Assert.IsNotNull(origins);
+
+        // Comprobamos que al menos haya un origen
+        Assert.IsTrue(origins.Count > 0);
+    }
+
+    [TestMethod]
+    public void GetDestinations_ReturnsOkResult()
+    {
+        // Ejecutamos el método
+        var result = _controller.GetDestinations();
+
+        // Verificamos que el resultado sea un OkObjectResult (200 OK)
+        Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+
+        var okResult = result as OkObjectResult;
+        var destinations = okResult.Value as List<string>;
+
+        // Verificamos que la lista de destinos no sea nula
+        Assert.IsNotNull(destinations);
+
+        // Comprobamos que al menos haya un destino
+        Assert.IsTrue(destinations.Count > 0);
+    }
+
+    [TestMethod]
+    public void GetFlightsByOrigin_ReturnsFlights_WhenValidFilter()
+    {
+        // Crear un filtro de ejemplo
+        var filter = new FlightFilterDTO
+        {
+            Origin = "New York",
+            Destination = "Los Angeles",
+            CoinToConvert = "USD"
+        };
+
+        // Ejecutamos el método
+        var result = _controller.GetFlightsByOrigin(filter);
+
+        // Verificamos que el resultado sea un OkObjectResult (200 OK)
+        Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+
+        var okResult = result as OkObjectResult;
+        var flights = okResult.Value as List<Flight>;
+
+        // Verificamos que la lista de vuelos no sea nula y contenga vuelos
+        Assert.IsNotNull(flights);
+        Assert.IsTrue(flights.Count > 0);
+    }
+
+    [TestMethod]
+    public void GetFlightsByOrigin_ReturnsBadRequest_WhenInvalidFilter()
+    {
+        // Crear un filtro inválido
+        var filter = new FlightFilterDTO { Origin = "", Destination = "", CoinToConvert = "USD" };
+
+        // Ejecutamos el método
+        var result = _controller.GetFlightsByOrigin(filter);
+
+        // Verificamos que el resultado sea un BadRequestObjectResult (400 Bad Request)
+        Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
+    }
+
+    [TestMethod]
+    public void GetFlightsByRoundTrip_ReturnsFlights_WhenValidFilter()
+    {
+        // Crear un filtro de ida y vuelta
+        var filter = new FlightFilterDTO
+        {
+            Origin = "New York",
+            Destination = "Los Angeles",
+            CoinToConvert = "USD"
+        };
+
+        // Ejecutamos el método
+        var result = _controller.GetFlightsByRoundTrip(filter);
+
+        // Verificamos que el resultado sea un OkObjectResult (200 OK)
+        Assert.IsInstanceOfType(result, typeof(OkObjectResult));
+
+        var okResult = result as OkObjectResult;
+        var flights = okResult.Value as List<Flight>;
+
+        // Verificamos que la lista de vuelos no sea nula y contenga vuelos
+        Assert.IsNotNull(flights);
+        Assert.IsTrue(flights.Count > 0);
+    }
+
+    [TestMethod]
+    public void GetFlightsByRoundTrip_ReturnsNotFound_WhenNoReturnFlights()
+    {
+        // Crear un filtro con un destino no válido
+        var filter = new FlightFilterDTO
+        {
+            Origin = "New York",
+            Destination = "Nowhere",
+            CoinToConvert = "USD"
+        };
+
+        // Ejecutamos el método
+        var result = _controller.GetFlightsByRoundTrip(filter);
+
+        // Verificamos que el resultado sea un NotFoundObjectResult (404 Not Found)
+        Assert.IsInstanceOfType(result, typeof(NotFoundObjectResult));
+    }
+
+}
